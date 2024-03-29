@@ -1,0 +1,974 @@
+*{
+    padding: 0;
+	margin: 0;
+}
+:root{
+    font-size: 20px;
+    --font-size-h1: 3.815rem;
+    --font-size-h2: 3.052rem;
+    --font-size-h3: 2.441rem;
+    --font-size-h4: 1.953rem;
+    --font-size-h5: 1.563rem;
+    --font-size-h6: 1.25rem;
+    --font-size-p: 1rem;
+    --font-size-small: 0.8rem;
+    --font-size-tiny: 0.64rem;
+    --golden-ratio: 1.61803398875;
+	--medium-title-font: "Rubik",sans-serif;
+	--big-title-font: "Merriweather Sans",sans-serif;
+	--content-font: "Open Sans", sans-serif;
+	--content-font-2: "Wix Madefor Text",sans-serif;
+	--ui-font: "Wix Madefor Display",sans-serif;
+    --background-tone-color: #1E374B;
+    --text-color: #D6ECFF;
+    --ui-text-color: #f8f6ff;
+    --primary:#302749;
+    --secondary:#42387C;
+    --accent-default: var(--background-tone-color);
+    --accent-about-me:#433758;
+    --accent-projects:#004D37;
+
+    --accent-about-me-tab-rgb:127 64 236;
+    --accent-projects-tab-rgb:3 195 140;
+	--accent-home-tab-rgb: 255 255 255;
+	--accent-talk-tab-rgb: 255 0 0;
+    --text-color-rgb: 214 236 255;
+    --background-tone-color-rgb: 30 55 75;
+    font-family: var(--medium-title-font);
+    color: var(--text-color); 
+    overflow-x: hidden;
+}
+body{
+    background-color: var(--background-tone-color);
+}
+figure.image-container > .image-content{
+    background-repeat: no-repeat; 
+}
+figure.image-content{
+    overflow: hidden;
+}
+nav-bar > figure.image-container#logo{
+    width: max-content;    
+    height: max-content;
+}
+nav-bar > figure.image-container#logo > .image-content{
+    background-image: url("resources/images/sonny-logo.png");
+    background-position: center;
+    background-size: cover; 
+    aspect-ratio: 883 / 953;    
+    height: 2em; /* adjust */
+    margin-left: 0.5em;
+}
+nav-bar > p#logo-title{
+    font-size: var(--font-size-h5); /* adjust */
+    margin-left: 0.5em; /* adjust */
+    font-weight: bold;
+}
+nav-bar > section#tabs > p{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: color 100ms linear, transform 100ms linear;
+/* consider adjusting */
+    width: 5em; 
+    height: 1.2em;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    border-radius: 0.3em;
+    color: rgb(0 33 59 / 85%);    
+    transform: scale(1);
+    --animation-counter: 0;
+	--current-accent: var(--text-color-rgb);
+	text-shadow: 0px 0px calc(var(--animation-counter) * 0.7em) rgb(var(--current-accent) / calc(var(--animation-counter)*100%));
+}
+nav-bar > section#tabs > p.highlighted{
+    color: var(--ui-text-color);
+    transform: scale(1.4);  
+    color: var(--ui-font);    
+    --animation-counter: 1;
+}
+nav-bar > section#tabs > p:hover{
+    cursor: pointer;
+}
+nav-bar > section#tabs{
+    margin-left: auto;
+    margin-right: auto;
+    translate: -50% 0%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em; /* adjust */
+    font-size: var(--font-size-small); /* adjust */
+    font-family: var(--ui-font);
+}
+
+@property --animation-counter{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --animation-counter-0{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --animation-counter-1{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --animation-counter-2{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --client-bounding-rect-top{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+nav-bar > button#menu{
+    margin-right: 1em; /* adjust */
+}
+nav-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    font-size: var(--font-size-h4); /* adjust */
+    height: 3em; /* adjust */
+    --current-accent: var(--accent-default);
+    --accent-progress: 100;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 1;
+    color: var(--ui-text-color);
+}
+nav-bar::before{
+    content: ""; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    color: #302749;
+    background-image: linear-gradient(90deg, var(--current-accent) calc(var(--accent-progress)/100 * 30%), rgb(	30 55 75 / 0%) 100%);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 2px 5px 0px rgb(0 0 0 / 40%);
+}
+
+background{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+background > figure.image-container{
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+@property --background-image-x-offset{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --background-image-y-offset{
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+background > figure.image-container > .image-content{
+	background-image: url("resources/images/background.jpg");
+    background-size: 170% 170%;
+    --background-image-x-offset: 0; 
+    --background-image-y-offset: 0; 
+    transition: --background-image-x-offset 4s linear, --background-image-y-offset 4s linear;
+    background-position: calc(var(--background-image-x-offset)* 1%) calc(var(--background-image-y-offset) * 1%);
+	width: 100%;
+    height: 100%;
+}
+/* temporary */
+/* nav-bar{
+    display: none;
+} */
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+header > section#header-container{
+    display: grid;
+    font-size: var(--font-size-h4); /* adjust */
+    /* adjust */
+    --start: 0.271;
+    --end: -0.28;
+    --range: calc(var(--start) - var(--end));
+    --scroll-effect-frame: calc((var(--y-position-on-view-normalized) - var(--end)) / var(--range));
+    /* grid-column */
+    grid-column-gap:calc(clamp(5em, clamp(0, var(--scroll-effect-frame), 1) * 100vw , 100vw));
+    /* grid-column-gap: 5em; */
+    grid-template-areas: 
+    "alias avatar"
+    "empty avatar"
+    "greeting avatar";
+}
+header > section#header-container > h1#alias{
+    grid-area: alias;
+    font-family: var(--big-title-font);
+}
+header > section#header-container > p#greeting{
+    grid-area: greeting;
+    font-size: var(--font-size-p);
+}
+header > section#header-container > figure#avatar{
+    grid-area: avatar;
+    /* background-color: red; */
+    width: calc(4.5em + var(--font-size-p)*4); /* adjust */
+    transform: scale(1.2);
+    aspect-ratio: 1/1; 
+    border-radius: 5em;
+}
+header > section#header-container > figure#avatar > #background{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #a37bfb99 0%, #01ffff99 60%);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -2;
+}
+header > section#header-container > figure#avatar > *:not(#background){
+    position: absolute;
+}
+header > section#header-container > figure#avatar > shape#back-square{
+    width: 100%;
+    height: 100%;
+    transform: scale(0.6);
+    translate: 27.5% -27.5%;
+    background-color: rgb(243 224 121); /* change color later */
+    z-index: -2;
+}
+header > section#header-container > figure#avatar > shape#front-circle{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0.275);
+    translate: -34.5% 42.5%;
+    background-color: rgb(32 178 189 / 66%); /* change color later */
+    backdrop-filter: blur(42px);
+}
+header > section#header-container > figure#avatar > shape#bubbles{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0.07);
+    translate: -39.5% -40.5%;
+    background-color: rgb(0 189 28); /* change color later */
+    z-index: -2;
+}
+header > section#header-container > figure#avatar > shape#smaller-bubbles{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0.11);
+    translate: -33% -49%;
+    background-color: rgb(53 169 0);
+    z-index: -2;
+}
+header > section#header-container > figure#avatar > shape.bar{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(130 80 255 / 75%);
+    transform: scaleX(0.0305) scaleY(0.25);
+    z-index: -2;
+}
+header > section#header-container > figure#avatar > shape.bar#bar-4{
+    translate: -42.06% -10%;
+}
+header > section#header-container > figure#avatar > shape.bar#bar-3{
+    translate: -47.06% -11%;
+}
+header > section#header-container > figure#avatar > shape.bar#bar-2{
+    translate: -52.06% -9%;
+}
+header > section#header-container > figure#avatar > shape.bar#bar-1{
+    translate: -57.06% -6%;
+}
+header > section#header-container > figure#avatar > shape.bar#bar-0{
+    translate: -62.06% -7.5%;
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle{
+    --aspect-ratio-w: 33.4641016151;
+    --aspect-ratio-h: 23.1506350946;
+    --aspect-ratio: calc(var(--aspect-ratio-w) / var(--aspect-ratio-h));
+    --triangle-side: calc(10 / var(--aspect-ratio-w) * 100%);
+    --gap-between-triangles: calc(var(--triangle-side)*(1/10));
+    width: 100%;
+    aspect-ratio: var(--aspect-ratio-w) / var(--aspect-ratio-h);
+    position: absolute;
+	transform: scale(0.2);
+	translate: 45% 100%;
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: linear-gradient(83deg, #c30000 0%, #4400ff 77%);
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape#bottom-left{
+    clip-path: polygon(
+        0% 100% /*origin*/,
+        calc(cos(60deg) * var(--triangle-side)) calc(100% - (sin(60deg) * var(--triangle-side)*var(--aspect-ratio))) /* top */,
+        var(--triangle-side) 100% /* far corner */
+    );
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape#center{
+    clip-path: polygon(
+        calc(cos(60deg) * var(--triangle-side) + cos(30deg) * var(--gap-between-triangles)) calc(100% - ((sin(60deg) * var(--triangle-side) + sin(30deg) * var(--gap-between-triangles)) *var(--aspect-ratio))) /*top-left: top of bottom-left triangle offset 90deg with the side by (gap) units*/,
+        calc(var(--triangle-side) + cos(30deg) * var(--gap-between-triangles)) calc(100% + (sin(30deg) * var(--gap-between-triangles))*var(--aspect-ratio)) /* bottom corner: far-corner of bottom-left triangle offset 90 degree to the side by (gap) unit */,
+        calc(cos(60deg) * var(--triangle-side) + cos(30deg) * var(--gap-between-triangles) + var(--triangle-side)) calc(100% - ((sin(60deg) * var(--triangle-side) + sin(30deg) * var(--gap-between-triangles)) *var(--aspect-ratio)))    /* top-far corner */
+    );
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape#bottom-right{
+    clip-path: polygon(
+        calc(cos(60deg) * var(--triangle-side) + var(--triangle-side) + 2 * var(--gap-between-triangles) * sin(60deg)) calc(100% - (sin(60deg) * var(--triangle-side)*var(--aspect-ratio))) /*top corner: top corner of bottom-left triangle goes to the right by (*n) + triangle side*/,
+        calc(var(--triangle-side) + 2 * var(--gap-between-triangles)) 100% /*bottom-left corner: far-corner corner of bottom-left triangle goes to the right by (*n)*/,
+        calc(2 * var(--triangle-side) + 2 * var(--gap-between-triangles)) 100% /*bottom-right corner: bottom-left corner of bottom-right triangle goes to the right by (triangle side) units*/
+    );
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape#top{
+    clip-path: polygon(
+        calc(cos(60deg) * var(--triangle-side) + cos(30deg) * var(--gap-between-triangles)) calc(100% - ((sin(60deg) * var(--triangle-side) + sin(30deg) * var(--gap-between-triangles) + var(--gap-between-triangles)) *var(--aspect-ratio))) /* bottom-left corner: top-left corner of center triangle goes up by (gap) units */,
+        calc(cos(60deg) * var(--triangle-side) + cos(30deg) * var(--gap-between-triangles) + var(--triangle-side)) calc(100% - ((sin(60deg) * var(--triangle-side) + sin(30deg) * var(--gap-between-triangles) + var(--gap-between-triangles)) *var(--aspect-ratio))) /* bottom-far corner: top-far corner of center triangle goes up by (gap) units */,
+        calc(cos(60deg) * var(--triangle-side) + cos(30deg) * var(--gap-between-triangles) + cos(60deg) * var(--triangle-side)) calc(100% - ((sin(60deg) * var(--triangle-side) + sin(30deg) * var(--gap-between-triangles) + var(--gap-between-triangles) + sin(60deg)*var(--triangle-side)) *var(--aspect-ratio))) /* top: bottom-left corner  of top triangle goes 60degree by (triangle side) units */
+    );
+}
+header > section#header-container > figure#avatar > figure#quadra-triangle > shape#large{
+    --local-triangle-side: calc(var(--triangle-side)*2 + sin(60deg) * var(--gap-between-triangles) * 2);
+    z-index: 100;
+    clip-path: polygon(
+        calc(cos(59deg) * var(--local-triangle-side) + cos(30deg) * var(--gap-between-triangles)) calc(100% - (sin(60deg) * var(--local-triangle-side) + sin(30deg) * var(--gap-between-triangles)) * var(--aspect-ratio)) /* top -left corner */,
+        calc(var(--local-triangle-side) + cos(28deg) * var(--gap-between-triangles)) calc(100% - sin(30deg) * var(--gap-between-triangles) * var(--aspect-ratio)) /* bottom corner */,
+        calc(var(--local-triangle-side) + cos(28deg) * var(--gap-between-triangles) + cos(60deg) * var(--local-triangle-side)) calc(100% - (sin(30deg) * var(--gap-between-triangles) + sin(60deg) * var(--local-triangle-side) )* var(--aspect-ratio)) /* top-far corner */
+    ); 
+     
+}
+
+header > section#header-container > figure#avatar > shape#border-arc{
+	/* do it later */
+	display: none
+
+}
+header > section#header-container > figure#avatar > #background > #background-glow{
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    background-image: linear-gradient(135deg,#EB00FF99, #00B91E99);
+    filter: blur(10px);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+}
+header > section#header-container > figure#avatar > .image-content{
+    background-image: url("resources/images/sonny-avatar.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+main{
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20vh;
+}
+main > section#about-me{
+    font-size: var(--font-size-h1);
+}
+main > section{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main > section > h1#title{
+    font-size: var(--font-size-h1);
+    font-family: var(--big-title-font);
+    --start: 0.67;
+    --end: 0.37;
+    --range: calc(var(--start) - var(--end));
+    margin-top: 2em;
+    /* color: rgb(var(--text-color-rgb) / calc(clamp(0%, clamp(0,1 - var(--scroll-effect-frame),1) * 100%,100%) )); */
+    transform: translateY(calc(clamp(0em, (1 - var(--scroll-effect-frame))*1em,1em) ));
+    color: rgb(var(--text-color-rgb) / calc(clamp(0%, var(--scroll-effect-frame) * 100%,100%) ));
+}
+main > section#about-me > section#content{
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    gap: 1em;
+    font-family: var(--content-font);
+    font-size: calc(var(--font-size-h2) * 1.2 ) ;
+}
+
+main > section#about-me > section#content > article#nationality{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    gap: 0.25em;
+    
+}
+main > section#about-me > section#content > article#nationality > span#vietnamese > span{
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png);
+    background-size: 85%;
+    background-position: 50% 28%;
+    background-clip: text;
+    background-repeat: no-repeat;
+    background-color: red;
+    font-weight: bold;
+    position: relative;
+    font-family: var(--content-font-2);
+    left: -6em;
+    transition: left 600ms linear;
+}
+main > section#about-me > section#content > article#nationality.scrolled-to > span#vietnamese > span ,
+main > section#about-me > section#content > article#nationality.over-scrolled> span#vietnamese > span{
+    left: 0em;
+}
+main > section#about-me > section#content > article#nationality > span#vietnamese{
+    display: block;
+    overflow: hidden;
+}
+main > section#about-me > section#content > article{
+	opacity: 0;
+	transition: opacity 100ms linear;
+}
+main > section#about-me > section#content > article.scrolled-to,
+main > section#about-me > section#content > article.over-scrolled{
+	opacity: 1;
+}
+main > section#about-me > section#content > article#preferences{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2em;
+}
+main > section#about-me > section#content > article#preferences > span.preference{
+    background-image: linear-gradient(45deg, var(--left-color) 0%, rgb( var(--right-color-rgb) / calc(var(--animation-counter)*100%)) calc(var(--animation-counter) * 100%));
+    background-clip: text;
+    color: transparent;
+    --animation-counter: 0;
+    transition: --animation-counter 450ms cubic-bezier(0.7, 0, 1, 1);
+}
+main > section#about-me > section#content > article#preferences > span.preference#coding{
+    --left-color: #a048fd;
+    --right-color-rgb: 255 255 0;
+}
+main > section#about-me > section#content > article#preferences > span.preference#math{
+    --left-color: #1e9153;
+    --right-color-rgb: 67 177 166;
+}
+main > section#about-me > section#content > article#preferences > span.preference#gym{
+    --left-color: #6bacc6;
+    --right-color-rgb: 226 104 52;
+}
+main > section#about-me > section#content > article#preferences > span.preference#music{
+    --left-color: red;
+    --right-color-rgb: 25 0 255;
+}
+
+
+main > section#about-me > section#content > article#preferences.scrolled-to > span.preference,
+main > section#about-me > section#content > article#preferences.over-scrolled > span.preference{
+    --animation-counter: 1;
+}
+
+main > section#about-me > section#content > article#preferences > span:not(#I){
+    font-family: var(--content-font-2);
+    font-weight: bolder;
+}
+
+main > section#about-me > section#content > article#preferences > figure#heart-shape-container{
+    aspect-ratio: 1/1;
+    height: 1em;
+}
+main > section#about-me > section#content > article#preferences > figure#heart-shape-container > shape:first-child{
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: red;
+    transform-origin: 0% 0%;
+    transform: scale(calc(73.248 / 100));
+    /* do it later */
+    /* transform: scale() */
+}
+
+main > section#about-me > section#content > article#where-am-i{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    flex-direction: row;
+    gap: 1em;
+}
+main > section#about-me > section#content > article#where-am-i > figcaption{
+    width: 15em;
+}
+main > section#about-me > section#content > article#where-am-i > figcaption > span#australia{
+    background-image: url("resources/images/flag-of-australia.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0% 10%;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+}
+main > section#about-me > section#content > article#where-am-i > figure#earth-image.image-container{
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    /* background-image: linear-gradient(); */
+    transition: --animation-counter 400ms linear;
+    box-shadow: 0px 0px 70px 0px rgb(56 165 253 / calc(var(--animation-counter) * 100% ));
+    background-image: linear-gradient(315deg, #38a5fd 0%,#037ade 100%);
+    --animationc-counter: 0;
+}
+main > section#about-me > section#content > article#where-am-i.scrolled-to > figure#earth-image.image-container,
+main > section#about-me > section#content > article#where-am-i.over-scrolled > figure#earth-image.image-container{
+    --animation-counter: 1;
+}
+main > section#about-me > section#content > article#where-am-i > figure#earth-image.image-container > .image-content {
+    aspect-ratio: 8000/5331;
+    height: 100%;
+    background-image: url("resources/images/basic_earth_map_continents.png");
+    background-size: cover;
+    transition: --animation-counter 1.25s ease-out;
+    --animation-counter: 0;
+    transform:translateX(calc(var(--animation-counter) * -38%));
+    filter: drop-shadow(0 0 10px rgb(0 0 0 / 35%));
+    /* background-color: red; */
+}
+main > section#about-me > section#content > article#where-am-i.scrolled-to > figure#earth-image.image-container > .image-content,
+main > section#about-me > section#content > article#where-am-i.over-scrolled > figure#earth-image.image-container > .image-content {
+    --animation-counter: 1;
+}
+
+main > section#projects{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--font-size-h3);
+    width: calc(100vw);
+    gap: 20vh;
+    overflow-x: hidden;
+
+}
+
+main > section#projects > h1#title{
+    margin-bottom: 2em;
+}
+
+main > section#projects > article{
+    display: grid;
+    grid-template-columns: 10em auto;
+    grid-template-rows: 4em 1em calc(var(--font-size-h5) * 6);
+    grid-column-gap: 1em;
+    grid-template-areas: 
+    "title image"
+    "tags image"
+    "paragraph image"
+   ;
+}
+main > section#projects > article > h2{
+    grid-area: title;
+    transform: translateX(calc(-100vw + var(--animation-counter) * 100vw));
+    transition: --animation-counter 1s ease-out;
+}
+main > section#projects > article:nth-child(odd) > h2{
+    transform: translateX(calc(100vw + var(--animation-counter) * -100vw));
+}
+main > section#projects > article > p{
+    grid-area: paragraph;
+    font-size: var(--font-size-h5);
+    transform: translateX(calc(-150vw + var(--animation-counter) * 150vw));
+    transition: --animation-counter 1.5s ease-out;
+    overflow-y: scroll;
+}
+main > section#projects > article:nth-child(odd) > p{
+    transform: translateX(calc(150vw + var(--animation-counter) * -150vw));
+}
+main > section#projects > article > figure.image-container{
+    grid-area: image;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(calc(100vw + var(--animation-counter) * -100vw));
+    transition: --animation-counter 1s ease-out;   
+    width: max-content;
+    height: calc(2em + var(--font-size-h6) * 3em + var(--font-size-h5) * 6);
+}
+main > section#projects > article:nth-child(odd) > figure.image-container{
+    transform: translateX(calc(-100vw + var(--animation-counter) * 100vw));
+}
+main > section#projects > article > figure.image-container > .image-content{
+    height: 100%;
+    background-image: url("resources/images/basic_earth_map_continents.jpg");
+    aspect-ratio: 8000/5331;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+}
+main > section#projects > article#tl-of-defence > figure.image-container > .image-content{
+    background-image: url("resources/images/projects/3-line-of-defence.png");
+    aspect-ratio: 999/701;
+}
+main > section#projects > article#second > figure.image-container > .image-content{
+    background-image: url("https://wallpaperaccess.com/full/393735.jpg");
+    aspect-ratio: 16/10;
+}
+main > section#projects > article#third > figure.image-container > .image-content{
+    background-image: url("https://www.goodfreephotos.com/albums/italy/other-italy/beautiful-landscape-with-mountains-and-lakes-with-sky-in-italy.jpg");
+    aspect-ratio: 3986/2489;
+}
+main > section#projects > article > section.tags{
+    grid-area: tags;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.3em;
+    font-size: var(--font-size-h6);
+    height: 3em;
+    /* gap = 1em*/
+    /* cell width = 10em*/
+    /* grid pos = 50vw - (max(10em,100vw-20em) + 10em + 1em)/2*/
+    transform: translateX(calc(-125vw + var(--animation-counter) * 125vw));
+    transition: --animation-counter 1.25s ease-out;
+}
+main > section#projects > article:nth-child(odd) > section.tags{
+    transform: translateX(calc(125vw + var(--animation-counter) * -125vw));
+}
+main > section#projects > article > section.tags > tag {
+    background-color: rgb(0, 19, 104);
+    height: 1em;
+    text-transform: lowercase;
+    color: white;
+    padding-bottom: 0.2em;
+    padding-right: 0.2em;
+    padding-left: 0.2em;
+    border-radius: 0.4em;
+}
+main > section#projects > article > section.tags > tag::before {
+    content: "#";
+}
+
+main > section#projects > article.over-scrolled > *,
+main > section#projects > article.scrolled-to > *{
+    --animation-counter: 1;
+}
+
+main > section#projects > article.under-scrolled > *{
+    --animation-counter: 0;
+}
+main > section#projects > article> *{
+    position: relative;
+}
+main > section#projects > article:nth-child(odd){
+     display: grid;
+    grid-template-columns: auto 10em;
+    grid-template-areas: 
+    "image title"
+    "image tags"
+    "image paragraph"
+   ;
+}
+main > section#projects > article:nth-child(odd) > h2{
+    text-align: end;
+}
+main > section#projects > article:nth-child(odd) > section.tags{
+    justify-content: flex-end;
+}
+main > section#projects > article:nth-child(odd) > p{
+    text-align: end;
+    color: var(--ui-text-color);
+}
+main > #still-more-container  > h3#still-more{
+    transform: scale(var(--animation-counter));
+    --animation-counter: 0;
+    text-align: center;
+    transition: --animation-counter 400ms linear;
+}
+main > #still-more-container  > h3#still-more.over-scrolled,
+main > #still-more-container  > h3#still-more.scrolled-to{
+    --animation-counter: 1;
+}
+main > #still-more-container > h3#still-more > a{
+    text-decoration: underline;
+    color: inherit;
+}
+
+main > #still-more-container{
+    font-size: var(--font-size-h1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 1em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+main > section#contact{
+    width: 100vw;
+    margin-top: 2em;
+    font-size: var(--font-size-h1);
+    height: max-content;
+    display: flex;
+    flex-direction: column ;
+    justify-content: flex-start;
+    align-items: center;
+}
+main> section#contact > h1{
+    font-family: var(--big-title-font);
+    margin-bottom: 1em;
+}
+main> section#contact > form{
+    font-size: var(--font-size-h6);
+    display: grid;
+    grid-template-areas: 
+    "lfname llname lpurpose"
+    "fname lname purpose"
+    "lpnumber lpnumber lmessage"
+    "pnumber pnumber message"
+    "lemail lemail message"
+    "email email message"
+    "submit submit submit"
+    ;
+    grid-row-gap: 0.4em;
+    grid-column-gap: 0.5em;
+    grid-template-rows: var(--font-size-small) auto var(--font-size-small) auto  var(--font-size-small) auto auto;
+    grid-template-columns: 12em 12em 21em;
+   ;
+}
+
+main > section#contact > form > input#first_name{
+    grid-area: fname;
+}
+main > section#contact > form > input#last_name{
+    grid-area: lname;
+}
+main > section#contact > form > input#email{
+    grid-area: email;
+}
+main > section#contact > form > input#phone_number{
+    grid-area: pnumber;
+}
+main > section#contact > form > div#submit-container{
+    grid-area: submit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    font-size: var(--font-size_h5);
+}
+main > section#contact > form > div#submit-container > input#submit{
+    font-size: inherit;
+    font-family: var(--ui-font);
+    padding: 0.75em;
+    border: none;
+    border-radius: 0.5em;
+    background-color:rgb(0, 126, 216);
+    color: var(--ui-text-color);
+    --animation-counter: 0;
+    transition: --animation-counter 200ms linear;
+    box-shadow: inset 0px 0px 0.3em rgb(46, 168, 255),0px 0em 1em rgb(136 136 136 / calc(50% + var(--animation-counter) * 50%));
+    cursor: pointer;
+}
+main > section#contact > form > div#submit-container > input#submit:hover{
+    --animation-counter: 1;
+}
+main > section#contact > form > label#first_name{
+    grid-area: lfname;
+}
+main > section#contact > form > label#last_name{
+    grid-area: llname;
+}
+main > section#contact > form > label#email{
+    grid-area: lemail;
+}
+main > section#contact > form > label#phone_number{
+    grid-area: lpnumber;
+}
+main > section#contact > form > label#message{
+    grid-area: lmessage;
+}
+main > section#contact > form > label#purpose{
+    grid-area: lpurpose;
+}
+main > section#contact > form > textarea#message{
+    grid-area: message;
+    height: initial;
+    resize: none;
+    font-size: inherit;
+}
+
+main > section#contact > form > select#purpose{
+    grid-area: purpose;
+    cursor: pointer;
+}
+main > section#contact > form  > input:not(#submit),main > section#contact > form  > textarea, main > section#contact > form > select{
+    background-color: rgb( var(--background-tone-color-rgb) / 50%);
+    border: none;
+    padding: 0.5em;
+    color: var(--ui-text-color);
+    font-family: var(--content-font);
+    transition: --animation-counter 200ms linear;
+    backdrop-filter: blur(calc(var(--animation-counter) * 3px));
+    --animation-counter: 0;
+    border-radius: 0.5em;
+}
+main > section#contact > form > input:not(#submit):focus,
+ main > section#contact > form > textarea:not(#submit):focus{
+    outline: none;
+    --animation-counter: 1;
+}
+main > section#contact > form > label{
+    font-size: var(--font-size-small);
+    text-decoration: underline rgb( 255 255 255 / calc(var(--animation-counter) * 100%));
+    text-underline-offset: 0.2em;
+    transition: --animation-counter 200ms linear;
+}
+main > section#contact > form > label.invalid{
+    color: rgb(255, 104, 104);
+    text-decoration-color: rgb(255 104 104);
+}
+main > section#contact > form > input:not(#submit):focus +label, 
+ main > section#contact > form > textarea:not(#submit):focus +label{
+    --animation-counter: 1;
+}
+
+main> section#contact > form > input:not(#submit), main> section#contact > form > select:not(#submit){
+    font-size: inherit;
+}
+
+footer{
+    margin-top:4em;
+    font-size: var(--font-size-h4);
+    background-color: var(--background-tone-color);
+    width: 100vw;
+    height: max-content;
+    box-shadow: 0px 0px 20px 8px #091542;
+}
+footer > section#online{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: var(--font-size-h2);
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+}
+
+footer > section#online > figure.image-container{
+    aspect-ratio: 1/1;
+    width: 1em;
+}
+footer > section#online > figure.image-container > .image-content{
+    aspect-ratio: 1/1;
+    width: 100%;
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    --animation-counter: 0;
+    transition: --animation-counter 100ms linear;
+    filter: brightness(var(--animation-counter));
+    cursor: pointer;
+}
+footer > section#online > figure.image-container > .image-content:hover{
+    --animation-counter: 1;
+}
+
+footer > section#online > figure.image-container#github > .image-content{
+    background-image: url("resources/images/github-icon.png");
+}
+footer > section#online > figure.image-container#discord > .image-content{
+    background-image: url("https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png");
+    color: var(--text-color);
+}
+footer > section#online > figure.image-container#facebook > .image-content{
+    background-image: url("https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png");
+}
+footer > section#online > figure.image-container#instagram > .image-content{
+    background-image: url("https://dreamfoundry.org/wp-content/uploads/2018/12/instagram-logo-png-transparent-background.png");
+}
+
+footer > section#final{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-h6);
+    background-color: #151d37;
+    height: 2em;
+}
+footer > section#final p#logo-title{
+   margin-left: 2em; 
+    font-weight: bold;
+}
+footer > section#final p#copyright{
+   margin-right: 2em; 
+}
+
+footer > section#online > figure.image-container#discord > #anouncement{
+    font-size: var(--font-size-tiny);
+    color: white;
+    position: absolute;
+    background-color: black;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    z-index: 1;
+    translate: calc(-50% + 0.5 * var(--font-size-h2)) -99%;
+    opacity: 0;
+}
+
+footer > section#online > figure.image-container#discord:hover > #anouncement{
+    opacity: 1;
+}
